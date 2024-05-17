@@ -66,3 +66,4 @@ themeToggleBtn.addEventListener("click", () => {
     body.classList.toggle("light-theme");
     themeToggleBtn.innerText = body.classList.contains("light-theme") ? "Dark Theme" : "Light Theme";
 });
+
