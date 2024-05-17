@@ -4,9 +4,10 @@ const getBtn = document.querySelector("form button");
 const exIcon = document.querySelector("form .reverse");
 const amount = document.querySelector("form input");
 const exRateTxt = document.querySelector(".result");
+const themeToggleBtn = document.getElementById("theme-toggle-button");
+const body = document.body;
 
 // Event listener for currency dropdowns (select)
-
 [fromCur, toCur].forEach((select, i) => {
     for (let curCode in Country_List) {
         const selected = (i === 0 && curCode === "USD") || (i === 1 && curCode === "GBP") ? "selected" : "";
@@ -19,8 +20,7 @@ const exRateTxt = document.querySelector(".result");
     });
 });
 
-// Function to get exchange rate from api
-
+// Function to get exchange rate from API
 async function getExchangeRate() {
     const amountVal = amount.value || 1;
     exRateTxt.innerText = "Getting exchange rate...";
@@ -45,7 +45,6 @@ async function getExchangeRate() {
 }
 
 // Event listeners for button and exchange icon click
-
 window.addEventListener("load", getExchangeRate);
 getBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -60,4 +59,10 @@ exIcon.addEventListener("click", () => {
         imgTag.src = `https://flagcdn.com/48x36/${Country_List[code].toLowerCase()}.png`;
     });
     getExchangeRate();
+});
+
+// Theme toggle button event listener
+themeToggleBtn.addEventListener("click", () => {
+    body.classList.toggle("light-theme");
+    themeToggleBtn.innerText = body.classList.contains("light-theme") ? "Dark Theme" : "Light Theme";
 });
