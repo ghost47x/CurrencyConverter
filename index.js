@@ -3,7 +3,7 @@ const toCur = document.querySelector(".to select");
 const getBtn = document.querySelector("form button");
 const exIcon = document.querySelector("form .reverse");
 const amount = document.querySelector("form input");
-const exRateTxt = document.querySelector("form .result");
+const exRateTxt = document.querySelector(".result");
 
 // Event listener for currency dropdowns (select)
 
@@ -30,6 +30,15 @@ async function getExchangeRate() {
         const exchangeRate = result.conversion_rates[toCur.value];
         const totalExRate = (amountVal * exchangeRate).toFixed(2);
         exRateTxt.innerText = `${amountVal} ${fromCur.value} = ${totalExRate} ${toCur.value}`;
+        
+        // Trigger animation
+        anime({
+            targets: '#result-box',
+            opacity: [0, 1],  // Fade in
+            translateY: [-10, 0],  // Move up slightly
+            duration: 500,
+            easing: 'easeOutQuad'
+        });
     } catch (error) {
         exRateTxt.innerText = "Something went wrong...";
     }
@@ -51,16 +60,4 @@ exIcon.addEventListener("click", () => {
         imgTag.src = `https://flagcdn.com/48x36/${Country_List[code].toLowerCase()}.png`;
     });
     getExchangeRate();
-});
-const resultBox = document.getElementById('result-box');
-
-// ... (your other JavaScript logic)
-
-// Example: When the exchange rate is calculated
-anime({
-    targets: resultBox,
-    opacity: [0, 1],  // Fade in
-    translateY: [-10, 0],  // Move up slightly
-    duration: 500,
-    easing: 'easeOutQuad'
 });
