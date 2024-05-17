@@ -52,3 +52,15 @@ exIcon.addEventListener("click", () => {
     });
     getExchangeRate();
 });
+const resultBox = document.getElementById('result-box');
+
+// ... (your other JavaScript logic)
+
+// Example: When the exchange rate is calculated
+anime({
+    targets: resultBox,
+    opacity: [0, 1],  // Fade in
+    translateY: [-10, 0],  // Move up slightly
+    duration: 500,
+    easing: 'easeOutQuad'
+});
